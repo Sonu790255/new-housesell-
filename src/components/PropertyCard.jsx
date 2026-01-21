@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import {
   Card,
   CardMedia,
@@ -7,15 +8,19 @@ import {
   Chip,
   Box,
   IconButton,
+  Tooltip,
 } from '@mui/material';
 import {
   LocationOn as LocationIcon,
   Bed as BedIcon,
   Bathtub as BathIcon,
   SquareFoot as AreaIcon,
+  Edit as EditIcon,
 } from '@mui/icons-material';
 
-function PropertyCard({ property }) {
+function PropertyCard({ property, showEditButton = false }) {
+  const { currentUser } = useAuth();
+  
   if (!property) {
     return null;
   }
@@ -28,6 +33,9 @@ function PropertyCard({ property }) {
       maximumFractionDigits: 0
     }).format(price);
   };
+
+  // Check if current user owns this property
+  const isOwner = currentUser && property.sellerId === currentUser.uid;
 
   return (
     <Card
@@ -70,6 +78,29 @@ function PropertyCard({ property }) {
             }}
           />
         </Box>
+        {/* Edit Button for Property Owner */}
+        {(showEditButton || isOwner) && (
+          <Box sx={{ position: 'absolute', top: 12, left: 12 }}>
+            <Tooltip title="Edit Property">
+              <IconButton
+                component={Link}
+                to={`/edit-property/${property.id}`}
+                sx={{
+                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                  backdropFilter: 'blur(10px)',
+                  '&:hover': {
+                    backgroundColor: 'rgba(255, 255, 255, 1)',
+                  },
+                  width: 40,
+                  height: 40,
+                }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <EditIcon sx={{ fontSize: 20, color: 'primary.main' }} />
+              </IconButton>
+            </Tooltip>
+          </Box>
+        )}
       </Box>
 
       <CardContent sx={{ flexGrow: 1, p: 3 }}>

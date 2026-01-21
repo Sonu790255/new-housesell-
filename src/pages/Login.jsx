@@ -19,7 +19,6 @@ import {
   Lock as LockIcon,
   Visibility,
   VisibilityOff,
-  Home as HomeIcon,
 } from '@mui/icons-material';
 
 function Login() {
@@ -71,16 +70,7 @@ function Login() {
           </Typography>
         </Box>
 
-        <Paper
-          elevation={8}
-          sx={{
-            p: 4,
-            borderRadius: 3,
-            backgroundColor: 'white',
-            position: 'relative',
-            zIndex: 2,
-          }}
-        >
+        <Paper elevation={8} sx={{ p: 4, borderRadius: 3, backgroundColor: 'white', position: 'relative', zIndex: 2 }}>
           {error && (
             <Alert severity="error" sx={{ mb: 3 }}>
               {error}
@@ -122,10 +112,7 @@ function Login() {
                 ),
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton
-                      onClick={() => setShowPassword(!showPassword)}
-                      edge="end"
-                    >
+                    <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
                       {showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
@@ -140,12 +127,7 @@ function Login() {
               variant="contained"
               size="large"
               disabled={loading}
-              sx={{
-                py: 1.5,
-                mb: 3,
-                fontSize: '1.1rem',
-                fontWeight: 'bold',
-              }}
+              sx={{ py: 1.5, mb: 3, fontSize: '1.1rem', fontWeight: 'bold' }}
             >
               {loading ? (
                 <>
@@ -160,26 +142,13 @@ function Login() {
             <Box sx={{ textAlign: 'center', pt: 2, borderTop: '1px solid #e0e0e0' }}>
               <Typography variant="body2" color="text.secondary">
                 Don't have an account?{' '}
-                <Link
-                  to="/signup"
-                  style={{
-                    color: '#1976d2',
-                    textDecoration: 'none',
-                    fontWeight: 'bold',
-                  }}
-                >
+                <Link to="/signup" style={{ color: '#1976d2', textDecoration: 'none', fontWeight: 'bold' }}>
                   Create one now
                 </Link>
               </Typography>
             </Box>
           </Box>
         </Paper>
-
-        <Box sx={{ textAlign: 'center', mt: 3 }} className="hero-content">
-          <Typography variant="caption" sx={{ color: 'rgba(255, 255, 255, 0.7)' }}>
-            By signing in, you agree to our Terms of Service and Privacy Policy
-          </Typography>
-        </Box>
       </Container>
     </div>
   );

@@ -13,16 +13,12 @@ import {
   IconButton,
   Avatar,
   CircularProgress,
-  LinearProgress,
-  Chip,
 } from '@mui/material';
 import {
   Email as EmailIcon,
   Lock as LockIcon,
   Visibility,
   VisibilityOff,
-  CheckCircle as CheckIcon,
-  Cancel as CancelIcon,
 } from '@mui/icons-material';
 
 function Signup() {
@@ -32,7 +28,6 @@ function Signup() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { signup } = useAuth();
   const navigate = useNavigate();
 
@@ -59,19 +54,6 @@ function Signup() {
     }
   };
 
-  const getPasswordStrength = (password) => {
-    if (password.length === 0) return { strength: 0, text: '', color: 'default' };
-    if (password.length < 6) return { strength: 25, text: 'Weak', color: 'error' };
-    if (password.length < 8) return { strength: 50, text: 'Fair', color: 'warning' };
-    if (password.length >= 8 && /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(password)) {
-      return { strength: 100, text: 'Strong', color: 'success' };
-    }
-    return { strength: 75, text: 'Good', color: 'info' };
-  };
-
-  const passwordStrength = getPasswordStrength(password);
-  const passwordsMatch = confirmPassword && password === confirmPassword;
-
   return (
     <div style={{ 
       background: 'linear-gradient(135deg, #4caf50 0%, #388e3c 100%)',
@@ -80,16 +62,6 @@ function Signup() {
       alignItems: 'center',
       position: 'relative'
     }}>
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        background: 'rgba(0, 0, 0, 0.1)',
-        zIndex: 1
-      }} />
-      
       <Container maxWidth="sm">
         <Box sx={{ textAlign: 'center', mb: 4, position: 'relative', zIndex: 2 }}>
           <Avatar
@@ -113,16 +85,7 @@ function Signup() {
           </Typography>
         </Box>
 
-        <Paper
-          elevation={8}
-          sx={{
-            p: 4,
-            borderRadius: 3,
-            backgroundColor: 'white',
-            position: 'relative',
-            zIndex: 2,
-          }}
-        >
+        <Paper elevation={8} sx={{ p: 4, borderRadius: 3, backgroundColor: 'white', position: 'relative', zIndex: 2 }}>
           {error && (
             <Alert severity="error" sx={{ mb: 3 }}>
               {error}
@@ -164,82 +127,25 @@ function Signup() {
                 ),
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton
-                      onClick={() => setShowPassword(!showPassword)}
-                      edge="end"
-                    >
+                    <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
                       {showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
                 ),
               }}
-              sx={{ mb: 1 }}
+              sx={{ mb: 2 }}
             />
-
-            {password && (
-              <Box sx={{ mb: 2 }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
-                  <Typography variant="caption" color="text.secondary">
-                    Password Strength
-                  </Typography>
-                  <Chip
-                    label={passwordStrength.text}
-                    color={passwordStrength.color}
-                    size="small"
-                  />
-                </Box>
-                <LinearProgress
-                  variant="determinate"
-                  value={passwordStrength.strength}
-                  color={passwordStrength.color}
-                  sx={{ height: 6, borderRadius: 3 }}
-                />
-              </Box>
-            )}
 
             <TextField
               fullWidth
               label="Confirm Password"
-              type={showConfirmPassword ? 'text' : 'password'}
+              type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
               margin="normal"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <CheckIcon color="action" />
-                  </InputAdornment>
-                ),
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                      edge="end"
-                    >
-                      {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-              sx={{ mb: 1 }}
+              sx={{ mb: 3 }}
             />
-
-            {confirmPassword && (
-              <Box sx={{ mb: 3, display: 'flex', alignItems: 'center' }}>
-                {passwordsMatch ? (
-                  <Box sx={{ display: 'flex', alignItems: 'center', color: 'success.main' }}>
-                    <CheckIcon sx={{ mr: 1, fontSize: 16 }} />
-                    <Typography variant="caption">Passwords match</Typography>
-                  </Box>
-                ) : (
-                  <Box sx={{ display: 'flex', alignItems: 'center', color: 'error.main' }}>
-                    <CancelIcon sx={{ mr: 1, fontSize: 16 }} />
-                    <Typography variant="caption">Passwords don't match</Typography>
-                  </Box>
-                )}
-              </Box>
-            )}
 
             <Button
               type="submit"
@@ -253,9 +159,7 @@ function Signup() {
                 fontSize: '1.1rem',
                 fontWeight: 'bold',
                 backgroundColor: '#4caf50',
-                '&:hover': {
-                  backgroundColor: '#388e3c',
-                },
+                '&:hover': { backgroundColor: '#388e3c' },
               }}
             >
               {loading ? (
@@ -271,26 +175,13 @@ function Signup() {
             <Box sx={{ textAlign: 'center', pt: 2, borderTop: '1px solid #e0e0e0' }}>
               <Typography variant="body2" color="text.secondary">
                 Already have an account?{' '}
-                <Link
-                  to="/login"
-                  style={{
-                    color: '#4caf50',
-                    textDecoration: 'none',
-                    fontWeight: 'bold',
-                  }}
-                >
+                <Link to="/login" style={{ color: '#4caf50', textDecoration: 'none', fontWeight: 'bold' }}>
                   Sign in here
                 </Link>
               </Typography>
             </Box>
           </Box>
         </Paper>
-
-        <Box sx={{ textAlign: 'center', mt: 3, position: 'relative', zIndex: 2 }}>
-          <Typography variant="caption" sx={{ color: 'rgba(255, 255, 255, 0.7)' }}>
-            By creating an account, you agree to our Terms of Service and Privacy Policy
-          </Typography>
-        </Box>
       </Container>
     </div>
   );

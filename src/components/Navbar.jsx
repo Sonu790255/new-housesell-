@@ -25,7 +25,6 @@ function Navbar() {
       navigate('/');
     } catch (error) {
       console.error('Logout error:', error);
-      alert('Failed to logout: ' + error.message);
     }
   };
 

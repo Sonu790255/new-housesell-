@@ -7,39 +7,45 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import PropertyDetails from './pages/PropertyDetails';
 import AddProperty from './pages/AddProperty';
+import EditProperty from './pages/EditProperty';
 import MyProperties from './pages/MyProperties';
 
 function App() {
   return (
     <AuthProvider>
-      <div className="min-h-screen bg-gray-100">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/property/:id" element={<PropertyDetails />} />
-          <Route 
-            path="/add-property" 
-            element={
-              <ProtectedRoute>
-                <AddProperty />
-              </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="/my-properties" 
-            element={
-              <ProtectedRoute>
-                <MyProperties />
-              </ProtectedRoute>
-            } 
-          />
-        </Routes>
-      </div>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/property/:id" element={<PropertyDetails />} />
+        <Route 
+          path="/add-property" 
+          element={
+            <ProtectedRoute>
+              <AddProperty />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/edit-property/:id" 
+          element={
+            <ProtectedRoute>
+              <EditProperty />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/my-properties" 
+          element={
+            <ProtectedRoute>
+              <MyProperties />
+            </ProtectedRoute>
+          } 
+        />
+      </Routes>
     </AuthProvider>
   );
 }
 
 export default App;
-

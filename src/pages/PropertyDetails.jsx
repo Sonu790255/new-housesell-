@@ -21,6 +21,7 @@ import {
 import {
   ArrowBack as ArrowBackIcon,
   Delete as DeleteIcon,
+  Edit as EditIcon,
   ChevronLeft as ChevronLeftIcon,
   ChevronRight as ChevronRightIcon,
   LocationOn as LocationIcon,
@@ -283,9 +284,17 @@ function PropertyDetails() {
             </Box>
 
             {isOwner && (
-              <Box sx={{ mb: 3 }}>
+              <Box sx={{ mb: 3, display: 'flex', gap: 2 }}>
                 <Button
                   variant="contained"
+                  startIcon={<EditIcon />}
+                  onClick={() => navigate(`/edit-property/${id}`)}
+                  sx={{ mr: 2 }}
+                >
+                  Edit Property
+                </Button>
+                <Button
+                  variant="outlined"
                   color="error"
                   startIcon={<DeleteIcon />}
                   onClick={() => setDeleteDialogOpen(true)}
