@@ -29,23 +29,26 @@ function Navbar() {
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: '#1976d2' }}>
+    <AppBar position="static" sx={{ background: 'linear-gradient(135deg, #afeaf1 0%, #6edee2 100%)' }}>
       <Container maxWidth="lg">
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <Typography
-            variant="h5"
-            component={Link}
-            to="/"
-            sx={{
-              textDecoration: 'none',
-              color: 'inherit',
-              fontWeight: 'bold',
-              display: 'flex',
-              alignItems: 'center',
-            }}
-          >
-            🏠 HouseSell
-          </Typography>
+  variant="h5"
+  // component={Link}
+  to="/"
+sx={{
+       fontWeight: 700,
+       color: 'white',
+       mb:1,
+       fontSize: { xs: '1rem', md: '2rem' },
+       letterSpacing: '-0.02em',
+       mt:1
+       
+    }}
+>
+  🏠 TrueHomes
+</Typography>
+
           
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             <Button

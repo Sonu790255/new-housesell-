@@ -102,7 +102,21 @@ function HomePage() {
   return (
     <Box sx={{ backgroundColor: '#f5f5f5', minHeight: '100vh' }}>
       {/* Hero Section */}
-      <Box className="hero-section" sx={{ py: 12, mb: 6 }}>
+      <Box
+        sx={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        background: `
+          // linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+          url('https://img.freepik.com/premium-photo/small-white-house-with-blue-background-white-house-left_1034036-95762.jpg?w=1060')
+        `,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        position: 'relative',
+      }}
+      >
         <Container maxWidth="lg">
           <Box className="hero-content" sx={{ textAlign: 'center' }}>
             <Typography
@@ -123,7 +137,7 @@ function HomePage() {
                 component="span" 
                 sx={{ 
                   display: 'block', 
-                  background: 'linear-gradient(90deg, #60a5fa 0%, #a78bfa 100%)',
+                  background: 'linear-gradient(90deg, #f9fff4ff 0%, #fffb09ff 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text'
@@ -432,7 +446,7 @@ function HomePage() {
                     justifyContent: 'center',
                     mx: 'auto',
                     mb: 3,
-                    boxShadow: '0 8px 24px rgba(59, 130, 246, 0.25)'
+                    boxShadow: '0 8px 24px rgba(62, 89, 133, 0.25)'
                   }}
                 >
                   <SearchIcon sx={{ fontSize: 40, color: 'white' }} />

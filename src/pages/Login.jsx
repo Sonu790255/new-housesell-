@@ -46,14 +46,28 @@ function Login() {
   };
 
   return (
-    <div className="hero-section" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
+    <Box
+      sx={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        background: `
+          // linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+          url('https://img.freepik.com/premium-photo/small-white-house-with-blue-background-white-house-left_1034036-95762.jpg?w=1060')
+        `,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        position: 'relative',
+      }}
+    >
       <Container maxWidth="sm">
-        <Box sx={{ textAlign: 'center', mb: 4 }} className="hero-content">
+        <Box sx={{ textAlign: 'center', mb: 4, position: 'relative', zIndex: 2 }}>
           <Avatar
             sx={{
               mx: 'auto',
               mb: 2,
-              bgcolor: 'white',
+              bgcolor: 'rgba(255, 255, 255, 0.9)',
               color: 'primary.main',
               width: 64,
               height: 64,
@@ -62,15 +76,26 @@ function Login() {
           >
             🏠
           </Avatar>
+          
           <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'white' }}>
             Welcome Back
           </Typography>
-          <Typography variant="h6" sx={{ color: 'rgba(255, 255, 255, 0.8)', mb: 4 }}>
+          <Typography variant="h6" sx={{ color: 'rgba(255, 255, 255, 0.9)', mb: 4 }}>
             Sign in to access your HouseSell account
           </Typography>
         </Box>
 
-        <Paper elevation={8} sx={{ p: 4, borderRadius: 3, backgroundColor: 'white', position: 'relative', zIndex: 2 }}>
+        <Paper 
+          elevation={12} 
+          sx={{ 
+            p: 4, 
+            borderRadius: 3, 
+            backgroundColor: 'rgba(255, 255, 255, 0.95)', 
+            backdropFilter: 'blur(10px)',
+            position: 'relative', 
+            zIndex: 2 
+          }}
+        >
           {error && (
             <Alert severity="error" sx={{ mb: 3 }}>
               {error}
@@ -127,7 +152,15 @@ function Login() {
               variant="contained"
               size="large"
               disabled={loading}
-              sx={{ py: 1.5, mb: 3, fontSize: '1.1rem', fontWeight: 'bold' }}
+              sx={{ 
+                py: 1.5,
+                mb: 3,
+                fontSize: '1.1rem',
+                fontWeight: 'bold',
+                background: 'linear-gradient(135deg, #85dde9 0%, #44c1c5 100%)',
+                '&:hover': { backgroundColor: '#a5a8b6' },
+              }}
+
             >
               {loading ? (
                 <>
@@ -150,7 +183,7 @@ function Login() {
           </Box>
         </Paper>
       </Container>
-    </div>
+    </Box>
   );
 }
 

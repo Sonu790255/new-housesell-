@@ -56,11 +56,15 @@ function Signup() {
 
   return (
     <div style={{ 
-      background: 'linear-gradient(135deg, #4caf50 0%, #388e3c 100%)',
-      minHeight: '100vh',
-      display: 'flex',
-      alignItems: 'center',
-      position: 'relative'
+      // background: 'linear-gradient(135deg, #71797a 0%, #43abc5 100%)',
+     backgroundImage: 'url("https://img.freepik.com/premium-photo/small-white-house-with-blue-background-white-house-left_1034036-95762.jpg?w=1060")',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      padding: '35px 0',
+      // minHeight: '100vh',
+      // display: 'flex',
+      // alignItems: 'center',
+      // position: 'relative'
     }}>
       <Container maxWidth="sm">
         <Box sx={{ textAlign: 'center', mb: 4, position: 'relative', zIndex: 2 }}>
@@ -158,8 +162,8 @@ function Signup() {
                 mb: 3,
                 fontSize: '1.1rem',
                 fontWeight: 'bold',
-                backgroundColor: '#4caf50',
-                '&:hover': { backgroundColor: '#388e3c' },
+                background: 'linear-gradient(135deg, #85dde9 0%, #44c1c5 100%)',
+                '&:hover': { backgroundColor: '#a5a8b6' },
               }}
             >
               {loading ? (
@@ -175,7 +179,7 @@ function Signup() {
             <Box sx={{ textAlign: 'center', pt: 2, borderTop: '1px solid #e0e0e0' }}>
               <Typography variant="body2" color="text.secondary">
                 Already have an account?{' '}
-                <Link to="/login" style={{ color: '#4caf50', textDecoration: 'none', fontWeight: 'bold' }}>
+                <Link to="/login" style={{ color: '#56bec5', textDecoration: 'none', fontWeight: 'bold' }}>
                   Sign in here
                 </Link>
               </Typography>
